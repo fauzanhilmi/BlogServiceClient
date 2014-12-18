@@ -107,9 +107,9 @@ public interface HelloService {
      * 
      * @return
      *     returns java.util.List<java.lang.String>
-     * @throws MalformedURLException_Exception
-     * @throws IOException_Exception
      * @throws JSONException_Exception
+     * @throws IOException_Exception
+     * @throws MalformedURLException_Exception
      */
     @WebMethod(operationName = "GetPublishedPost")
     @WebResult(targetNamespace = "")
@@ -140,9 +140,9 @@ public interface HelloService {
      * 
      * @return
      *     returns java.util.List<java.lang.String>
+     * @throws JSONException_Exception
      * @throws IOException_Exception
      * @throws MalformedURLException_Exception
-     * @throws JSONException_Exception
      */
     @WebMethod(operationName = "GetUnpublishedPost")
     @WebResult(targetNamespace = "")
@@ -231,6 +231,41 @@ public interface HelloService {
 
     /**
      * 
+     * @return
+     *     returns java.util.List<java.lang.String>
+     * @throws JSONException_Exception
+     * @throws IOException_Exception
+     * @throws MalformedURLException_Exception
+     */
+    @WebMethod(operationName = "GetAllUser")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "GetAllUser", targetNamespace = "http://service.heroku.chamerling.org/", className = "org.chamerling.heroku.service.GetAllUser")
+    @ResponseWrapper(localName = "GetAllUserResponse", targetNamespace = "http://service.heroku.chamerling.org/", className = "org.chamerling.heroku.service.GetAllUserResponse")
+    public List<String> getAllUser()
+        throws IOException_Exception, JSONException_Exception, MalformedURLException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<java.lang.String>
+     * @throws JSONException_Exception
+     * @throws IOException_Exception
+     * @throws MalformedURLException_Exception
+     */
+    @WebMethod(operationName = "Search")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "Search", targetNamespace = "http://service.heroku.chamerling.org/", className = "org.chamerling.heroku.service.Search")
+    @ResponseWrapper(localName = "SearchResponse", targetNamespace = "http://service.heroku.chamerling.org/", className = "org.chamerling.heroku.service.SearchResponse")
+    public List<String> search(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0)
+        throws IOException_Exception, JSONException_Exception, MalformedURLException_Exception
+    ;
+
+    /**
+     * 
      * @param arg3
      * @param arg2
      * @param arg4
@@ -263,9 +298,9 @@ public interface HelloService {
      * @param arg0
      * @return
      *     returns boolean
-     * @throws MalformedURLException_Exception
-     * @throws IOException_Exception
      * @throws JSONException_Exception
+     * @throws IOException_Exception
+     * @throws MalformedURLException_Exception
      */
     @WebMethod(operationName = "AddNewPost")
     @WebResult(targetNamespace = "")
@@ -301,9 +336,9 @@ public interface HelloService {
      * 
      * @return
      *     returns java.util.List<java.lang.String>
+     * @throws JSONException_Exception
      * @throws IOException_Exception
      * @throws MalformedURLException_Exception
-     * @throws JSONException_Exception
      */
     @WebMethod(operationName = "GetDeletedPost")
     @WebResult(targetNamespace = "")

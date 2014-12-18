@@ -4,6 +4,7 @@
     Author     : adwisatya
 --%>
 
+<%@page import="classes.Client"%>
 <%@ page pageEncoding="UTF-8" %>
 <%@page import = "java.sql.*" %>
 <%@page import = "java.io.*" %>
@@ -11,7 +12,7 @@
 <%
 	String id	=	 request.getParameter("id");
 	
-	try{
+	/*try{
 		Connection connection = null;
 	
 		PreparedStatement pStatement = null;
@@ -30,7 +31,10 @@
 		pStatement.close();
 	}catch (SQLException ex){
 		throw ex;
-	}
+	}*/
+        int i = Integer.parseInt(id);
+        Client cli = new Client();
+        cli.deletePost(i);
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
 	response.setHeader("Location", "index.jsp");
 %>

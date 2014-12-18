@@ -34,6 +34,7 @@ public class ObjectFactory {
     private final static QName _UpdateUser_QNAME = new QName("http://service.heroku.chamerling.org/", "updateUser");
     private final static QName _JSONException_QNAME = new QName("http://service.heroku.chamerling.org/", "JSONException");
     private final static QName _GetPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "GetPostResponse");
+    private final static QName _SearchResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "SearchResponse");
     private final static QName _DelUserResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "delUserResponse");
     private final static QName _GetAllCommentResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "GetAllCommentResponse");
     private final static QName _LoginResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "LoginResponse");
@@ -44,9 +45,11 @@ public class ObjectFactory {
     private final static QName _AddCommentResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "AddCommentResponse");
     private final static QName _RecoverPost_QNAME = new QName("http://service.heroku.chamerling.org/", "RecoverPost");
     private final static QName _AddPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "addPostResponse");
+    private final static QName _GetAllUser_QNAME = new QName("http://service.heroku.chamerling.org/", "GetAllUser");
     private final static QName _DeletePost_QNAME = new QName("http://service.heroku.chamerling.org/", "DeletePost");
     private final static QName _GetDeletedPost_QNAME = new QName("http://service.heroku.chamerling.org/", "GetDeletedPost");
     private final static QName _ReadUser_QNAME = new QName("http://service.heroku.chamerling.org/", "readUser");
+    private final static QName _GetAllUserResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "GetAllUserResponse");
     private final static QName _GetPost_QNAME = new QName("http://service.heroku.chamerling.org/", "GetPost");
     private final static QName _MalformedURLException_QNAME = new QName("http://service.heroku.chamerling.org/", "MalformedURLException");
     private final static QName _GetDeletedPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "GetDeletedPostResponse");
@@ -59,6 +62,7 @@ public class ObjectFactory {
     private final static QName _GetPublishedPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "GetPublishedPostResponse");
     private final static QName _AddUserResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "addUserResponse");
     private final static QName _UpdateUserResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "updateUserResponse");
+    private final static QName _Search_QNAME = new QName("http://service.heroku.chamerling.org/", "Search");
     private final static QName _AddNewPost_QNAME = new QName("http://service.heroku.chamerling.org/", "AddNewPost");
     private final static QName _DelUser_QNAME = new QName("http://service.heroku.chamerling.org/", "delUser");
 
@@ -118,6 +122,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAllUserResponse }
+     * 
+     */
+    public GetAllUserResponse createGetAllUserResponse() {
+        return new GetAllUserResponse();
+    }
+
+    /**
      * Create an instance of {@link GetPost }
      * 
      */
@@ -147,6 +159,14 @@ public class ObjectFactory {
      */
     public AddNewPost createAddNewPost() {
         return new AddNewPost();
+    }
+
+    /**
+     * Create an instance of {@link Search }
+     * 
+     */
+    public Search createSearch() {
+        return new Search();
     }
 
     /**
@@ -326,6 +346,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SearchResponse }
+     * 
+     */
+    public SearchResponse createSearchResponse() {
+        return new SearchResponse();
+    }
+
+    /**
      * Create an instance of {@link AddPostResponse }
      * 
      */
@@ -347,6 +375,14 @@ public class ObjectFactory {
      */
     public GetDeletedPost createGetDeletedPost() {
         return new GetDeletedPost();
+    }
+
+    /**
+     * Create an instance of {@link GetAllUser }
+     * 
+     */
+    public GetAllUser createGetAllUser() {
+        return new GetAllUser();
     }
 
     /**
@@ -464,6 +500,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SearchResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "SearchResponse")
+    public JAXBElement<SearchResponse> createSearchResponse(SearchResponse value) {
+        return new JAXBElement<SearchResponse>(_SearchResponse_QNAME, SearchResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DelUserResponse }{@code >}}
      * 
      */
@@ -554,6 +599,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllUser }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "GetAllUser")
+    public JAXBElement<GetAllUser> createGetAllUser(GetAllUser value) {
+        return new JAXBElement<GetAllUser>(_GetAllUser_QNAME, GetAllUser.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeletePost }{@code >}}
      * 
      */
@@ -578,6 +632,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "readUser")
     public JAXBElement<ReadUser> createReadUser(ReadUser value) {
         return new JAXBElement<ReadUser>(_ReadUser_QNAME, ReadUser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllUserResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "GetAllUserResponse")
+    public JAXBElement<GetAllUserResponse> createGetAllUserResponse(GetAllUserResponse value) {
+        return new JAXBElement<GetAllUserResponse>(_GetAllUserResponse_QNAME, GetAllUserResponse.class, null, value);
     }
 
     /**
@@ -686,6 +749,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "updateUserResponse")
     public JAXBElement<UpdateUserResponse> createUpdateUserResponse(UpdateUserResponse value) {
         return new JAXBElement<UpdateUserResponse>(_UpdateUserResponse_QNAME, UpdateUserResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Search }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "Search")
+    public JAXBElement<Search> createSearch(Search value) {
+        return new JAXBElement<Search>(_Search_QNAME, Search.class, null, value);
     }
 
     /**

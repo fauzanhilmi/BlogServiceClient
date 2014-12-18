@@ -8,7 +8,6 @@
 <%@page import = "classes.Post" %>
 <%@page import= "classes.User" %>
 <%@page import= "classes.Comment" %>
-<%@page import= "Post.PostBean" %>
 <%@page import= "java.text.SimpleDateFormat" %>
 <%@page import= "java.util.Date" %>
 <%@page import= "java.sql.*" %>
@@ -49,6 +48,30 @@
 <title>Simple Blog of Bangsatya</title>
 </head>
 <jsp:include page="header.jsp"/>
+<%!
+    public String DtoS(Long l) {
+        Date d = new Date(l);
+        SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
+        String ConvD = ft.format(d);
+        String[] arrS = ConvD.split("/");
+        //out.println(arrS[0]+" "+arrS[1]+" "+arrS[2]);
+        String month="";
+        if(arrS[1].equals("1") || arrS[1].equals("01")) month = "Januari";
+        else if (arrS[0].equals("2") || arrS[0].equals("02")) month = "Februari";
+        else if (arrS[0].equals("3") || arrS[0].equals("03")) month = "Maret";
+        else if (arrS[0].equals("4") || arrS[0].equals("04")) month = "April";
+        else if (arrS[0].equals("5") || arrS[0].equals("05")) month = "Mei";
+        else if (arrS[0].equals("6") || arrS[0].equals("06")) month = "Juni";
+        else if (arrS[0].equals("7") || arrS[0].equals("07")) month = "Juli";
+        else if (arrS[0].equals("8") || arrS[0].equals("08")) month = "Agustus";
+        else if (arrS[0].equals("9") || arrS[0].equals("09")) month = "September";
+        else if (arrS[0].equals("10")) month = "Oktober";
+        else if (arrS[0].equals("11")) month = "November";
+        else if (arrS[0].equals("12")) month = "Desember";
+        String res = arrS[1]+" "+month+" "+arrS[2];
+        return res;
+    }
+%>
 <%
 	String usrC=" ";
 	int typeC=4;
@@ -73,34 +96,41 @@
         <nav class="art-list">
           <ul class="art-list-body">
 			<%
-				Date date = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				PostBean pBean =  new PostBean();
-				pBean.ViewPost(request.getParameter("id"));
+                            String id = request.getParameter("id");
+                            int i = Integer.parseInt(id);
+                            Client cli = new Client();
+                            Post q = new Post();
+                            String s = cli.getPost(i);
+                            Post p = new Post();
+                            p = q.JSONtoPost(s);
+                            
+                            Date date = new Date();
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                            long l = p.Tanggal;
 			%>
 					<center>
 					<table border=1 style="align:center" >
 						<tr>
 							<td colspan="2" align="center">
-								<h4><% out.println(pBean.getJudul()); %></h4>
+								<h4><% out.println(p.Judul); %></h4>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<% out.println(pBean.getTanggal()); %>
+								<% out.println(DtoS(p.Tanggal)); %>
 							</td>
 							<td>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<p><% out.println(pBean.getKonten()); %></p>
+								<p><% out.println(p.Konten); %></p>
 							</td>
 						</tr>
 						<tr>
 							<% if (typeC!=4){ %>
 							<td colspan="2">
-							  <a href="edit.jsp?id=<% out.println(pBean.getId()); %>">Edit</a> | <a href="handler/delPost.jsp?id=<% out.println(pBean.getId()); %>">Hapus</a>
+							  <a href="edit.jsp?id=<% out.println(p.id); %>">Edit</a> | <a href="handler/delPost.jsp?id=<% out.println(p.id); %>">Hapus</a>
 							</td>
 							<% } %>
 						</tr>
@@ -118,7 +148,7 @@
 										Pesan<br/>
 											<textarea id="pPesan" name="pesan" cols="84" rows="5"></textarea><br/>
 											<input type="hidden" id="pTanggal" name="tanggal" value="<% out.println(sdf.format(date)); %>">
-										<input type="hidden" id="pId" name="id" value="<% out.println(pBean.getId()); %>">
+										<input type="hidden" id="pId" name="id" value="<% out.println(p.id); %>">
 										<input type="button" name="postKomentar" value="Post Komentar" onclick="return cekEmail();">
 									</form>
 								</div>
@@ -139,7 +169,7 @@
 						<hr/>
 					</div>
 			<% 
-					String Driver = "com.mysql.jdbc.Driver";
+					/*String Driver = "com.mysql.jdbc.Driver";
 					String DbUser = "root";
 					String DbPass = "";
 					String DbName = "Tubes2WBD";
@@ -172,7 +202,7 @@
 						} catch (SQLException e) {
 							throw e;
 						}
-					}					
+					}*/					
 				%>
           </ul>
         </nav>

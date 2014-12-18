@@ -3,11 +3,14 @@
     Created on : Nov 25, 2014, 10:16:59 PM
     Author     : adwisatya
 --%>
-<%@page import = "Post.Post" %>
+<%@page import="classes.Client"%>
+<%@page import = "classes.Post" %>
 <%
 	String id	=	 request.getParameter("id");
-	Post.publish(id);
+	Client cli = new Client();
+        int i = Integer.parseInt(id);
+        cli.publishPost(i);
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
-	response.setHeader("Location", "../admin.jsp");
+	response.setHeader("Location", "../index.jsp");
 %>
 

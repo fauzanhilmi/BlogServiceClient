@@ -77,22 +77,25 @@
         	<% } else { %>
             <h2>Edit Post</h2>
 			<%
-				PostBean pBean =  new PostBean();
-				String id = request.getParameter("id");
-				pBean.ViewPost(id);
-
+				//PostBean pBean =  new PostBean();
+                                Client cli = new Client();
+				String id   = request.getParameter("id");
+                                int i = Integer.parseInt(id);
+                                Post q = new Post();
+                                String s  = cli.getPost(i);
+                                Post p = q.JSONtoPost(s);
 			%>
             <div id="contact-area">
                 <form method="post" action="handler/updatePost.jsp" onsubmit="return cekInputan()">
                     <label for="Judul">Judul</label>
-                    <input type="text" name="judul" id="Judul" value="<% out.println(pBean.getJudul()); %>">
+                    <input type="text" name="judul" id="Judul" value="<% out.println(p.Judul); %>">
 		
                     <label for="Tanggal">Tanggal:</label>
                     <input type="text" name="tanggal" id="Tanggal" placeholder="2015-12-29">
                     
                     <label for="Konten">Konten:</label><br>
-                    <textarea name="konten" rows="20" cols="20" id="Konten"><% out.println(pBean.getKonten()); %></textarea>
-					<input type="hidden" name="ID" id="ID" value="<% out.println(id); %>">
+                    <textarea name="konten" rows="20" cols="20" id="Konten"><% out.println(p.Konten); %></textarea>
+					<input type="hidden" name="ID" id="ID" value=<% out.println(p.id); %>>
                     <input type="submit" name="submit" value="Simpan" class="submit-button">
                 </form>
             </div>

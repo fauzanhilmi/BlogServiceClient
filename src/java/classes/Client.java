@@ -217,5 +217,6 @@ public class Client {
         org.chamerling.heroku.service.HelloService port = service.getHelloServiceImplPort();
         return port.updateUser(arg0, arg1, arg2, arg3, arg4);
     }
+
    
 }

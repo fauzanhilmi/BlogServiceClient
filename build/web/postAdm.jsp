@@ -4,6 +4,7 @@
     Author     : adwisatya
 --%>
 
+<%@page import="java.util.Collections"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
@@ -70,7 +71,7 @@
         else if (arrS[0].equals("10")) month = "Oktober";
         else if (arrS[0].equals("11")) month = "November";
         else if (arrS[0].equals("12")) month = "Desember";
-        String res = arrS[0]+" "+month+" "+arrS[2];
+        String res = arrS[1]+" "+month+" "+arrS[2];
         return res;
     }
 %>
@@ -110,6 +111,7 @@
                                     Post p = Post.JSONtoPost(Cli.getUnpublishedPost().get(i));
                                     lp.add(p);
                                 }
+                                Collections.sort(lp);
                                 for(int i=0; i<lp.size(); i++) {
                                     {
                                         Post p = lp.get(i);

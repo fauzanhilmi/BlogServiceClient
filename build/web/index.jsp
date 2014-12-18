@@ -73,7 +73,7 @@
         else if (arrS[0].equals("10")) month = "Oktober";
         else if (arrS[0].equals("11")) month = "November";
         else if (arrS[0].equals("12")) month = "Desember";
-        String res = arrS[0]+" "+month+" "+arrS[2];
+        String res = arrS[1]+" "+month+" "+arrS[2];
         return res;
     }
 %>

@@ -9,6 +9,8 @@
   <xs:element name="DeletePostResponse" type="tns:DeletePostResponse"/>
   <xs:element name="GetAllComment" type="tns:GetAllComment"/>
   <xs:element name="GetAllCommentResponse" type="tns:GetAllCommentResponse"/>
+  <xs:element name="GetAllUser" type="tns:GetAllUser"/>
+  <xs:element name="GetAllUserResponse" type="tns:GetAllUserResponse"/>
   <xs:element name="GetDeletedPost" type="tns:GetDeletedPost"/>
   <xs:element name="GetDeletedPostResponse" type="tns:GetDeletedPostResponse"/>
   <xs:element name="GetPost" type="tns:GetPost"/>
@@ -23,6 +25,8 @@
   <xs:element name="PublishPostResponse" type="tns:PublishPostResponse"/>
   <xs:element name="RecoverPost" type="tns:RecoverPost"/>
   <xs:element name="RecoverPostResponse" type="tns:RecoverPostResponse"/>
+  <xs:element name="Search" type="tns:Search"/>
+  <xs:element name="SearchResponse" type="tns:SearchResponse"/>
   <xs:element name="UpdatePost" type="tns:UpdatePost"/>
   <xs:element name="UpdatePostResponse" type="tns:UpdatePostResponse"/>
   <xs:element name="addPost" type="tns:addPost"/>
@@ -179,6 +183,14 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="GetAllUser">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="GetAllUserResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="addUser">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string"/>
@@ -191,6 +203,16 @@
   <xs:complexType name="addUserResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Search">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SearchResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AddNewPost">
@@ -296,12 +318,24 @@
     <wsdl:part element="tns:AddComment" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="GetAllUser">
+    <wsdl:part element="tns:GetAllUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="Login">
     <wsdl:part element="tns:Login" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="Search">
+    <wsdl:part element="tns:Search" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="delUser">
     <wsdl:part element="tns:delUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SearchResponse">
+    <wsdl:part element="tns:SearchResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="addUser">
@@ -354,6 +388,10 @@
   </wsdl:message>
   <wsdl:message name="GetDeletedPost">
     <wsdl:part element="tns:GetDeletedPost" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetAllUserResponse">
+    <wsdl:part element="tns:GetAllUserResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="UpdatePostResponse">
@@ -485,11 +523,35 @@
       <wsdl:output message="tns:GetAllCommentResponse" name="GetAllCommentResponse">
     </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetAllUser">
+      <wsdl:input message="tns:GetAllUser" name="GetAllUser">
+    </wsdl:input>
+      <wsdl:output message="tns:GetAllUserResponse" name="GetAllUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:MalformedURLException" name="MalformedURLException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:JSONException" name="JSONException">
+    </wsdl:fault>
+    </wsdl:operation>
     <wsdl:operation name="addUser">
       <wsdl:input message="tns:addUser" name="addUser">
     </wsdl:input>
       <wsdl:output message="tns:addUserResponse" name="addUserResponse">
     </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:Search" name="Search">
+    </wsdl:input>
+      <wsdl:output message="tns:SearchResponse" name="SearchResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:MalformedURLException" name="MalformedURLException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:JSONException" name="JSONException">
+    </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="AddNewPost">
       <wsdl:input message="tns:AddNewPost" name="AddNewPost">
@@ -655,6 +717,42 @@
       <wsdl:output name="GetAllCommentResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="GetAllUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetAllUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="MalformedURLException">
+        <soap:fault name="MalformedURLException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="JSONException">
+        <soap:fault name="JSONException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="Search">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SearchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="MalformedURLException">
+        <soap:fault name="MalformedURLException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="JSONException">
+        <soap:fault name="JSONException" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="addUser">
       <soap:operation soapAction="" style="document"/>
