@@ -107,9 +107,9 @@ public interface HelloService {
      * 
      * @return
      *     returns java.util.List<java.lang.String>
-     * @throws JSONException_Exception
-     * @throws IOException_Exception
      * @throws MalformedURLException_Exception
+     * @throws IOException_Exception
+     * @throws JSONException_Exception
      */
     @WebMethod(operationName = "GetPublishedPost")
     @WebResult(targetNamespace = "")
@@ -140,9 +140,9 @@ public interface HelloService {
      * 
      * @return
      *     returns java.util.List<java.lang.String>
-     * @throws JSONException_Exception
      * @throws IOException_Exception
      * @throws MalformedURLException_Exception
+     * @throws JSONException_Exception
      */
     @WebMethod(operationName = "GetUnpublishedPost")
     @WebResult(targetNamespace = "")
@@ -151,6 +151,20 @@ public interface HelloService {
     public List<String> getUnpublishedPost()
         throws IOException_Exception, JSONException_Exception, MalformedURLException_Exception
     ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod(operationName = "RecoverPost")
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "RecoverPost", targetNamespace = "http://service.heroku.chamerling.org/", className = "org.chamerling.heroku.service.RecoverPost")
+    @ResponseWrapper(localName = "RecoverPostResponse", targetNamespace = "http://service.heroku.chamerling.org/", className = "org.chamerling.heroku.service.RecoverPostResponse")
+    public boolean recoverPost(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0);
 
     /**
      * 
@@ -249,9 +263,9 @@ public interface HelloService {
      * @param arg0
      * @return
      *     returns boolean
-     * @throws JSONException_Exception
-     * @throws IOException_Exception
      * @throws MalformedURLException_Exception
+     * @throws IOException_Exception
+     * @throws JSONException_Exception
      */
     @WebMethod(operationName = "AddNewPost")
     @WebResult(targetNamespace = "")
@@ -287,9 +301,9 @@ public interface HelloService {
      * 
      * @return
      *     returns java.util.List<java.lang.String>
-     * @throws JSONException_Exception
      * @throws IOException_Exception
      * @throws MalformedURLException_Exception
+     * @throws JSONException_Exception
      */
     @WebMethod(operationName = "GetDeletedPost")
     @WebResult(targetNamespace = "")
@@ -303,7 +317,6 @@ public interface HelloService {
      * 
      * @param arg3
      * @param arg2
-     * @param arg5
      * @param arg4
      * @param arg1
      * @param arg0
@@ -324,8 +337,6 @@ public interface HelloService {
         @WebParam(name = "arg3", targetNamespace = "")
         String arg3,
         @WebParam(name = "arg4", targetNamespace = "")
-        int arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        Long arg5);
+        Long arg4);
 
 }

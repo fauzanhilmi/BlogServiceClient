@@ -20,8 +20,9 @@
         Date date = sdf.parse(Tanggal);
         Long l = date.getTime();
         
-        Post p = new Post(Judul,Owner,Konten,l);
-	/*Post.NewPost(Judul,date,Konten,Owner);
+        Client cli = new Client();
+        cli.addNewPost(Judul,Owner,Konten,l);
+        //Post.NewPost(Judul,date,Konten,Owner);
 	response.setStatus(response.SC_MOVED_TEMPORARILY);
-	response.setHeader("Location", "../index.jsp");*/
+	response.setHeader("Location", "../index.jsp");
 %>

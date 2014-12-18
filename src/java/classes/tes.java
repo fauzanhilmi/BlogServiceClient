@@ -12,7 +12,7 @@ package classes;
 public class tes {
     public static void main(String args[]) {
         tes t = new tes();
-        System.out.println(addUser("lkjlfdask","lkfdjldkfasj","kldfslkfdsaj","dakjflda","Admin"));
+        System.out.println(addUser("john doe","fauzan","hilmi","f@h.com","Admin"));
         
     }
 

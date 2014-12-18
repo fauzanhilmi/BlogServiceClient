@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _IOException_QNAME = new QName("http://service.heroku.chamerling.org/", "IOException");
     private final static QName _PublishPost_QNAME = new QName("http://service.heroku.chamerling.org/", "PublishPost");
     private final static QName _GetPublishedPost_QNAME = new QName("http://service.heroku.chamerling.org/", "GetPublishedPost");
+    private final static QName _RecoverPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "RecoverPostResponse");
     private final static QName _AddPost_QNAME = new QName("http://service.heroku.chamerling.org/", "addPost");
     private final static QName _UpdateUser_QNAME = new QName("http://service.heroku.chamerling.org/", "updateUser");
     private final static QName _JSONException_QNAME = new QName("http://service.heroku.chamerling.org/", "JSONException");
@@ -41,6 +42,7 @@ public class ObjectFactory {
     private final static QName _AddNewPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "AddNewPostResponse");
     private final static QName _GetAllComment_QNAME = new QName("http://service.heroku.chamerling.org/", "GetAllComment");
     private final static QName _AddCommentResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "AddCommentResponse");
+    private final static QName _RecoverPost_QNAME = new QName("http://service.heroku.chamerling.org/", "RecoverPost");
     private final static QName _AddPostResponse_QNAME = new QName("http://service.heroku.chamerling.org/", "addPostResponse");
     private final static QName _DeletePost_QNAME = new QName("http://service.heroku.chamerling.org/", "DeletePost");
     private final static QName _GetDeletedPost_QNAME = new QName("http://service.heroku.chamerling.org/", "GetDeletedPost");
@@ -236,6 +238,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RecoverPostResponse }
+     * 
+     */
+    public RecoverPostResponse createRecoverPostResponse() {
+        return new RecoverPostResponse();
+    }
+
+    /**
      * Create an instance of {@link AddPost }
      * 
      */
@@ -340,6 +350,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RecoverPost }
+     * 
+     */
+    public RecoverPost createRecoverPost() {
+        return new RecoverPost();
+    }
+
+    /**
      * Create an instance of {@link AddCommentResponse }
      * 
      */
@@ -398,6 +416,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "GetPublishedPost")
     public JAXBElement<GetPublishedPost> createGetPublishedPost(GetPublishedPost value) {
         return new JAXBElement<GetPublishedPost>(_GetPublishedPost_QNAME, GetPublishedPost.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RecoverPostResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "RecoverPostResponse")
+    public JAXBElement<RecoverPostResponse> createRecoverPostResponse(RecoverPostResponse value) {
+        return new JAXBElement<RecoverPostResponse>(_RecoverPostResponse_QNAME, RecoverPostResponse.class, null, value);
     }
 
     /**
@@ -506,6 +533,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "AddCommentResponse")
     public JAXBElement<AddCommentResponse> createAddCommentResponse(AddCommentResponse value) {
         return new JAXBElement<AddCommentResponse>(_AddCommentResponse_QNAME, AddCommentResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RecoverPost }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.heroku.chamerling.org/", name = "RecoverPost")
+    public JAXBElement<RecoverPost> createRecoverPost(RecoverPost value) {
+        return new JAXBElement<RecoverPost>(_RecoverPost_QNAME, RecoverPost.class, null, value);
     }
 
     /**

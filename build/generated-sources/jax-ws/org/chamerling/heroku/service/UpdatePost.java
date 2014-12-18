@@ -20,8 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,8 +35,7 @@ import javax.xml.bind.annotation.XmlType;
     "arg1",
     "arg2",
     "arg3",
-    "arg4",
-    "arg5"
+    "arg4"
 })
 public class UpdatePost {
 
@@ -45,8 +43,7 @@ public class UpdatePost {
     protected String arg1;
     protected String arg2;
     protected String arg3;
-    protected int arg4;
-    protected Long arg5;
+    protected Long arg4;
 
     /**
      * Gets the value of the arg0 property.
@@ -139,41 +136,25 @@ public class UpdatePost {
     /**
      * Gets the value of the arg4 property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public int getArg4() {
+    public Long getArg4() {
         return arg4;
     }
 
     /**
      * Sets the value of the arg4 property.
      * 
-     */
-    public void setArg4(int value) {
-        this.arg4 = value;
-    }
-
-    /**
-     * Gets the value of the arg5 property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getArg5() {
-        return arg5;
-    }
-
-    /**
-     * Sets the value of the arg5 property.
-     * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setArg5(Long value) {
-        this.arg5 = value;
+    public void setArg4(Long value) {
+        this.arg4 = value;
     }
 
 }

@@ -1,3 +1,9 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <!-- 
     Document   : index
     Created on : Nov 24, 2014, 4:14:48 PM
@@ -47,6 +53,30 @@
 <div class="wrapper">
 
 <jsp:include page="header.jsp"/>
+<%!
+    public String DtoS(Long l) {
+        Date d = new Date(l);
+        SimpleDateFormat ft = new SimpleDateFormat("MM/dd/yyyy");
+        String ConvD = ft.format(d);
+        String[] arrS = ConvD.split("/");
+        //out.println(arrS[0]+" "+arrS[1]+" "+arrS[2]);
+        String month="";
+        if(arrS[1].equals("1") || arrS[1].equals("01")) month = "Januari";
+        else if (arrS[0].equals("2") || arrS[0].equals("02")) month = "Februari";
+        else if (arrS[0].equals("3") || arrS[0].equals("03")) month = "Maret";
+        else if (arrS[0].equals("4") || arrS[0].equals("04")) month = "April";
+        else if (arrS[0].equals("5") || arrS[0].equals("05")) month = "Mei";
+        else if (arrS[0].equals("6") || arrS[0].equals("06")) month = "Juni";
+        else if (arrS[0].equals("7") || arrS[0].equals("07")) month = "Juli";
+        else if (arrS[0].equals("8") || arrS[0].equals("08")) month = "Agustus";
+        else if (arrS[0].equals("9") || arrS[0].equals("09")) month = "September";
+        else if (arrS[0].equals("10")) month = "Oktober";
+        else if (arrS[0].equals("11")) month = "November";
+        else if (arrS[0].equals("12")) month = "Desember";
+        String res = arrS[0]+" "+month+" "+arrS[2];
+        return res;
+    }
+%>
 <%
 	String usrC=" ";
 	int typeC=4;
@@ -72,16 +102,22 @@
           <ul class="art-list-body">
 			<%
 				Client Cli = new Client();
-				for(int i=0;i<Cli.getPublishedPost().size();i++){
-                                    out.println(Cli.getPublishedPost().get(i));
-                                    Post p = new Post();
-                                    p.JSONtoPost(Cli.getPublishedPost().get(i));
+                                List<Post> lp = new ArrayList<Post>();
+                                for(int i=0; i<Cli.getPublishedPost().size(); i++) {
+                                    Post p = Post.JSONtoPost(Cli.getPublishedPost().get(i));
+                                    lp.add(p);
+                                }
+                                Collections.sort(lp);
+				for(int i=0;i<lp.size();i++){
+                                    //out.println(Cli.getPublishedPost().get(i));
+                                    //Post p = Pot.JSONtoPost(Cli.getPublishedPost().get(i));
+                                    Post p = lp.get(i);
 					//if(p.Status == 1){
 			%>	
 			<li class="art-list-item">
 				<div class="art-list-item-title-and-time">
 					<h2 class="art-list-title"><a href="show_post.jsp?id=<% out.println(/*Cli.GetPublishedPost().get(i).id*/p.id); %>"><% out.println(/*Cli.GetPublishedPost().get(i).*/p.Judul); %></a></h2>
-					<div class="art-list-time"><% out.println(/*Cli.GetPublishedPost().get(i)*/p.Tanggal); %></div>
+					<div class="art-list-time"><% out.println(/*Cli.GetPublishedPost().get(i)*/DtoS(p.Tanggal)); %></div>
 					<div class="art-list-owner">Owner:&nbsp;<% out.println(/*Cli.GetPublishedPost().get(i)*/p.Owner); %></div>
 				</div>
 				<p><% out.println(/*Cli.getPublishedPost().get(i)*/p.Konten); %></p>

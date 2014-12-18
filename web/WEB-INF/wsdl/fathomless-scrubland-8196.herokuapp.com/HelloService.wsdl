@@ -21,6 +21,8 @@
   <xs:element name="LoginResponse" type="tns:LoginResponse"/>
   <xs:element name="PublishPost" type="tns:PublishPost"/>
   <xs:element name="PublishPostResponse" type="tns:PublishPostResponse"/>
+  <xs:element name="RecoverPost" type="tns:RecoverPost"/>
+  <xs:element name="RecoverPostResponse" type="tns:RecoverPostResponse"/>
   <xs:element name="UpdatePost" type="tns:UpdatePost"/>
   <xs:element name="UpdatePostResponse" type="tns:UpdatePostResponse"/>
   <xs:element name="addPost" type="tns:addPost"/>
@@ -122,6 +124,24 @@
       <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="GetUnpublishedPost">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="GetUnpublishedPostResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RecoverPost">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RecoverPostResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="addPost">
     <xs:sequence>
       <xs:element minOccurs="0" name="arg0" type="xs:string"/>
@@ -133,14 +153,6 @@
   <xs:complexType name="addPostResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:boolean"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="GetUnpublishedPost">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:complexType name="GetUnpublishedPostResponse">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="updateUser">
@@ -218,8 +230,7 @@
       <xs:element minOccurs="0" name="arg1" type="xs:string"/>
       <xs:element minOccurs="0" name="arg2" type="xs:string"/>
       <xs:element minOccurs="0" name="arg3" type="xs:string"/>
-      <xs:element name="arg4" type="xs:int"/>
-      <xs:element minOccurs="0" name="arg5" type="xs:long"/>
+      <xs:element minOccurs="0" name="arg4" type="xs:long"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UpdatePostResponse">
@@ -259,6 +270,10 @@
   </wsdl:message>
   <wsdl:message name="addPost">
     <wsdl:part element="tns:addPost" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RecoverPost">
+    <wsdl:part element="tns:RecoverPost" name="parameters">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="PublishPostResponse">
@@ -345,6 +360,10 @@
     <wsdl:part element="tns:UpdatePostResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="RecoverPostResponse">
+    <wsdl:part element="tns:RecoverPostResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="readUserResponse">
     <wsdl:part element="tns:readUserResponse" name="parameters">
     </wsdl:part>
@@ -361,12 +380,12 @@
     <wsdl:part element="tns:AddNewPostResponse" name="parameters">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="JSONException">
-    <wsdl:part element="tns:JSONException" name="JSONException">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="GetAllComment">
     <wsdl:part element="tns:GetAllComment" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="JSONException">
+    <wsdl:part element="tns:JSONException" name="JSONException">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="GetAllCommentResponse">
@@ -430,12 +449,6 @@
       <wsdl:output message="tns:LoginResponse" name="LoginResponse">
     </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="addPost">
-      <wsdl:input message="tns:addPost" name="addPost">
-    </wsdl:input>
-      <wsdl:output message="tns:addPostResponse" name="addPostResponse">
-    </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUnpublishedPost">
       <wsdl:input message="tns:GetUnpublishedPost" name="GetUnpublishedPost">
     </wsdl:input>
@@ -447,6 +460,18 @@
     </wsdl:fault>
       <wsdl:fault message="tns:JSONException" name="JSONException">
     </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RecoverPost">
+      <wsdl:input message="tns:RecoverPost" name="RecoverPost">
+    </wsdl:input>
+      <wsdl:output message="tns:RecoverPostResponse" name="RecoverPostResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPost">
+      <wsdl:input message="tns:addPost" name="addPost">
+    </wsdl:input>
+      <wsdl:output message="tns:addPostResponse" name="addPostResponse">
+    </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="updateUser">
       <wsdl:input message="tns:updateUser" name="updateUser">
@@ -594,6 +619,15 @@
       <wsdl:fault name="JSONException">
         <soap:fault name="JSONException" use="literal"/>
       </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RecoverPost">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="RecoverPost">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="RecoverPostResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="addPost">
       <soap:operation soapAction="" style="document"/>

@@ -5,9 +5,11 @@
 --%>
 
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@page import="classes.Client"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -32,26 +34,39 @@
         <title></title>
     </head>
     <body>
-        <sql:setDataSource var="Tubes2WBD" 
-                           driver="com.mysql.jdbc.Driver"
-                           url="jdbc:mysql://localhost:3306/"
-                           user="root"
-                           password=""/>
       
         <% String usr = request.getParameter("username");
            String pass = request.getParameter("password");
-           String Query = "SELECT * FROM Tubes2WBD.users WHERE username=\""+usr+"\" AND password=\""+pass+"\""; 
+           Client Cli=new Client();
+           List<String> ls = new ArrayList<String>();
+           ls = Cli.login(usr,pass);
+           int isvalid=1;
+           if(ls.get(1).equalsIgnoreCase("0")) 
+           {    
+               isvalid=0;
+           }
+           /*else
+           {
+                Cookie Cusr=new Cookie("LogName",request.getParameter("username"));
+                Cookie CType=new Cookie("LogType",request.getParameter("type"));
+                Cusr.setMaxAge(60*60*24);
+                CType.setMaxAge(60*60*24);
+                Cusr.setPath("/");
+                CType.setPath("/");
+                response.addCookie(Cusr);
+                response.addCookie(CType);
+                response.setStatus(response.SC_MOVED_TEMPORARILY);
+                response.setHeader("Location", "../index.jsp");
+           }*/
+           //String Query = "SELECT * FROM Tubes2WBD.users WHERE username=\""+usr+"\" AND password=\""+pass+"\""; 
+           /*<sql:query dataSource="${Tubes2WBD}" var="result">
+            </sql:query>*/
         %>
-        
-        
-        <sql:query dataSource="${Tubes2WBD}" var="result">
-            <%= Query %>
-        </sql:query>
           <c:choose>
-                <c:when test="${result.rowCount gt 0}">
+              <c:when test="<%= isvalid==1 %>">
                     <form method="post" action="handler/addCookie.jsp" id="successform">
-                        <input type="hidden" name="username" id="username" value="${result.getRows()[0].username}">
-                        <input type="hidden" name="type" id="type" value="${result.getRows()[0].status}">
+                        <input type="hidden" name="username" id="username" value="<%= ls.get(0) %>">
+                        <input type="hidden" name="type" id="type" value="<%= ls.get(1) %>">
                     </form>
                     <script>
                         document.getElementById("successform").submit();
@@ -60,6 +75,7 @@
                 </c:when>
                 <c:otherwise>
                     <form method="post" action="index.jsp" id="errorform">
+                        <input type="text" name="test" id="test" value="<%= isvalid %>">
                         <input type="hidden" name="errormessage" id="errormessage" value="errormessage">
                     </form>
                     <script>
